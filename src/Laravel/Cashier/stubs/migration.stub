@@ -12,15 +12,11 @@ class AddCashierColumns extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('cashier_table', function(Blueprint $table)
-		{
-			$table->tinyInteger('stripe_active')->default(0);
+		Schema::table('customers', function(Blueprint $table)
+		{	
+			$table->increments('user_id')->references('id')->on('users');
 			$table->string('stripe_id')->nullable();
-			$table->string('stripe_subscription')->nullable();
-			$table->string('stripe_plan', 25)->nullable();
 			$table->string('last_four', 4)->nullable();
-			$table->timestamp('trial_ends_at')->nullable();
-			$table->timestamp('subscription_ends_at')->nullable();
 		});
 	}
 
@@ -31,12 +27,7 @@ class AddCashierColumns extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('cashier_table', function(Blueprint $table)
-		{
-			$table->dropColumn(
-				'stripe_active', 'stripe_id', 'stripe_subscription', 'stripe_plan', 'last_four', 'trial_ends_at', 'subscription_ends_at'
-			);
-		});
+		Schema::drop('customers');
 	}
 
 }
