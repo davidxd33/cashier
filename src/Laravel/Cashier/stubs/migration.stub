@@ -12,7 +12,7 @@ class AddCashierColumns extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('customers', function(Blueprint $table)
+		Schema::create('customers', function(Blueprint $table)
 		{	
 			$table->increments('user_id')->references('id')->on('users');
 			$table->string('stripe_id')->nullable();
