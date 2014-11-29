@@ -82,7 +82,7 @@ class StripeGateway {
 	 * 
 	 * @param  array  $properties
 	 * @param  array  $user
-	 * @return \Stripe_Charge
+	 * @return \Stripe_Charge|boolean
 	 */
 	public function charge(array $properties = array(), array $user = array()) 
 	{
